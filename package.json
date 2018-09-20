@@ -1,0 +1,14 @@
+{
+  "name": "coding-theory",
+  "displayName": "Coding Theory examples",
+  "description": "",
+  "version": "0.1.0",
+  "publisher": "markupCode",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.14.0",
+    "typescript": "^3.0.1"
+  }
+}
