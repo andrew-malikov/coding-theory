@@ -1,0 +1,4 @@
+include ':analyzer-lib'
+include ':analyzer-cli'
+rootProject.name = 'coding-theory'
+
