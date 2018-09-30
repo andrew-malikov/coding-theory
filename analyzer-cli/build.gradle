@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+apply plugin: 'application'
+apply plugin: 'kotlin'
+apply plugin: 'java'
+
+group 'osu.labs.coding-theory'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+sourceSets {
+    main.java.srcDirs += 'src'
+    test.java.srcDirs += 'test'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "com.xenomachina:kotlin-argparser:2.0.7"
+
+    compile project(":analyzer-lib")
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'osu.labs.codingTheory.analyzerCli.MainKt'
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
