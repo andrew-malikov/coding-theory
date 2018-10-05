@@ -1,4 +1,4 @@
-package osu.labs.codingTheory.analyzerLib
+package analyzer.lib
 
 import java.io.InputStream
 

@@ -1,9 +1,9 @@
-package osu.labs.codingTheory.analyzerCli
+package analyzer.cli
 
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.mainBody
 
-import osu.labs.codingTheory.analyzerLib.*
+import analyzer.lib.*
 import java.io.File
 
 fun main(args: Array<String>) = mainBody {

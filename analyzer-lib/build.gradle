@@ -1,5 +1,4 @@
 plugins {
-    id 'java'
     id 'org.jetbrains.kotlin.jvm'
 }
 
@@ -9,8 +8,13 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 sourceSets {
-    main.java.srcDirs += 'src'
-    test.java.srcDirs += 'test'
+    main.java.srcDirs = ['src']
+    test.java.srcDirs = ['test']
+
+    main.kotlin.srcDirs = ['src']
+    test.kotlin.srcDirs = ['test']
+
+    main.resources.srcDirs = ['resources']
 }
 
 repositories {

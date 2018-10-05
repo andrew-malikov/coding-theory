@@ -1,3 +1,3 @@
-package osu.labs.codingTheory.analyzerCli
+package analyzer.cli
 
 enum class Mode { VOLUMETRIC, HARTLEY, SHANNON }

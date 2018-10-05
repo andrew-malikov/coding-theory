@@ -1,4 +1,5 @@
 include ':analyzer-lib'
 include ':analyzer-cli'
-rootProject.name = 'coding-theory'
-
+include ':ascii-lib'
+include ':ascii-encoder-cli'
+include ':ascii-decoder-cli'

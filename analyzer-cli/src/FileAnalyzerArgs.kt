@@ -1,4 +1,4 @@
-package osu.labs.codingTheory.analyzerCli
+package analyzer.cli
 
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.default
