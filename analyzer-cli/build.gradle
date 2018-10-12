@@ -15,6 +15,7 @@ sourceSets {
     test.kotlin.srcDirs = ['test']
 
     main.resources.srcDirs = ['resources']
+    test.resources.srcDirs = ['test']
 }
 
 repositories {
