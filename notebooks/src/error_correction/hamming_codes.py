@@ -71,7 +71,7 @@ def get_diff_control_bits(code: [int], stats) -> [int]:
 
     for key in stats:
         if code[2**key - 1] != stats[key] % 2:
-            diff.append(2**key - 1)
+            diff.append(2**key)
 
     return diff
 
@@ -98,6 +98,6 @@ def decode(code: [int]) -> [int]:
     diff = get_diff_control_bits(code, stats)
 
     if len(diff) != 0:
-        repair_bit(code, sum(diff))
+        repair_bit(code, sum(diff) - 1)
 
     return remove_control_bits(code, stats)

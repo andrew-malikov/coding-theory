@@ -1,6 +1,3 @@
-from random import random
-
-
 def normalize_bits(bits: [int], normalized_size: int = 7) -> [int]:
     if len(bits) == normalized_size:
         return bits
