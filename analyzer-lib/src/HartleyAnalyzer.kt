@@ -13,10 +13,13 @@ class HartleyAnalyzer : Analyzable {
 
         reader.useLines { it.forEach {
             length += it.length
+
             it.forEach {
                 var count = 1
+
                 if (symbols.contains(it))
                     count += symbols[it]!!
+
                 symbols[it] = count
             }
         } }
