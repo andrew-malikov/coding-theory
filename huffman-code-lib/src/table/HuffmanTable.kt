@@ -1,42 +1,35 @@
 package huffman.code.lib.table
 
-class HuffmanTable() {
+class HuffmanTable {
     fun computeCodes(stats: Map<Char, Int>, builder: TableCodeBuilder): Map<Char, Int> {
-        val computed = mutableMapOf<Char, Int>()
+        val table = mutableMapOf<Char, Int>()
 
         val nodes = getMergedNodes(getEmptyContainers(stats))
 
-        computed[nodes[0].symbol] = builder.getBaseCode(nodes[0].length)
+        table[nodes[0].symbol] = builder.getBaseCode(nodes[0].length)
 
         var previousNode: Node = nodes[0]
         for (i in 1 until nodes.size) {
-            var code = builder.getCode(computed[previousNode.symbol]!!)
+            var code = builder.getCode(table[previousNode.symbol]!!)
 
             if (previousNode.length != nodes[i].length)
                 code = builder.getBaseCode(nodes[i].length)
 
-            computed[nodes[i].symbol] = code
+            table[nodes[i].symbol] = code
 
             previousNode = nodes[i]
         }
 
-        return computed
+        return table
     }
 
-    private fun getMergedNodes(inputContainers: MutableList<NodeContainer>): List<Node> {
-        inputContainers.sortBy { it.weight }
+    private fun getMergedNodes(containers: MutableList<NodeContainer>): List<Node> {
+        containers.sortBy { it.weight }
 
-        var containers = inputContainers
         while (containers.size > 1) {
-            val merged = mutableListOf<NodeContainer>()
-
-            for (i in 0 until containers.size step 2)
-                merged.add(containers[i].merge(containers[i + 1]))
-
-            if (containers.size % 2 == 1)
-                merged.add(containers.last())
-
-            containers = merged
+            val merged = containers.removeAt(0).merge(containers.removeAt(0))
+            containers.add(merged)
+            containers.sortBy { it.weight }
         }
 
         return containers[0].nodes
@@ -46,7 +39,7 @@ class HuffmanTable() {
         val containers = mutableListOf<NodeContainer>()
 
         stats.forEach {
-            containers.add(NodeContainer(nodes = listOf(Node(it.key, it.value))))
+            containers.add(NodeContainer(it.value, listOf(Node(it.key, 0))))
         }
 
         return containers
