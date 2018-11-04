@@ -1,7 +1,7 @@
 package huffman.code.lib.specification
 
 /**
- * @param data should contain only 1 and 0
+ * @param data should contain only 0 and 1
  * */
 class Payload(val data: String) {
     val emptyBits

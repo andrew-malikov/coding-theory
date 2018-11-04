@@ -1,7 +1,7 @@
 package huffman.code.lib
 
 class SymbolAnalyzer {
-    fun analyze(sequence: CharArray): Map<Char, Int> {
+    fun analyze(sequence: CharSequence): Map<Char, Int> {
         val stats = mutableMapOf<Char, Int>()
 
         sequence.forEach {

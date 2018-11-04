@@ -5,12 +5,12 @@ import java.lang.StringBuilder
 
 class HeaderBuilder(private val header: Header) {
 
-    fun setSymbolLength(length: Byte): HeaderBuilder {
+    fun setSymbolLengthInBits(length: Byte): HeaderBuilder {
         header.symbolLengthInBits = length
         return this
     }
 
-    fun setFrequencyLength(length: Byte): HeaderBuilder {
+    fun setFrequencyLengthInBits(length: Byte): HeaderBuilder {
         header.frequencyLengthInBits = length
         return this
     }
@@ -26,7 +26,7 @@ class HeaderBuilder(private val header: Header) {
     }
 
     fun setEmptyBitCount(payload: Payload): HeaderBuilder {
-        header.emptyBitCount = (payload.data.length % 8).toByte()
+        header.emptyBitCount = payload.emptyBits.toByte()
         return this
     }
 
@@ -45,6 +45,7 @@ class HeaderBuilder(private val header: Header) {
         }
 
         header.statsTable = table.toString()
+        header.symbolCount = statsTable.size.toShort()
 
         return this
     }
