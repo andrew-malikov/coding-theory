@@ -1,7 +1,8 @@
 package huffman.code.lib
 
 import huffman.code.lib.specification.Header
-import huffman.code.lib.table.TableCodeBuilder
+import huffman.code.lib.table.Codes
+import huffman.code.lib.tree.NodeFactory
 
 class HuffmanBinaryEncoder {
     private val analyzer = SymbolAnalyzer()
@@ -11,7 +12,10 @@ class HuffmanBinaryEncoder {
     fun encode(sequence: CharSequence, symbolSizeInBits: Byte = 8): ByteArray {
         val stats = analyzer.analyze(sequence)
 
-        val payload = PayloadEncoder(TableCodeBuilder()).encode(sequence, stats)
+        val tree = NodeFactory().from(stats)
+        val codes = Codes(tree)
+
+        val payload = PayloadEncoder().encode(sequence, codes.table)
         val header = Header
                 .create()
                 .setSymbolLengthInBits(symbolSizeInBits)
