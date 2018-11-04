@@ -6,12 +6,12 @@ import java.lang.StringBuilder
 class HeaderBuilder(private val header: Header) {
 
     fun setSymbolLength(length: Byte): HeaderBuilder {
-        header.symbolLength = length
+        header.symbolLengthInBits = length
         return this
     }
 
     fun setFrequencyLength(length: Byte): HeaderBuilder {
-        header.frequencyLength = length
+        header.frequencyLengthInBits = length
         return this
     }
 
@@ -36,14 +36,15 @@ class HeaderBuilder(private val header: Header) {
     }
 
     fun setStatsTable(statsTable: Map<Char, Int>, encoder: BinaryStringEncoder): HeaderBuilder {
-        val builder = StringBuilder()
+        val table = StringBuilder()
 
         statsTable.forEach {
-            builder.append(encoder.toBinaryString(it.key, header.symbolLength.toInt()))
-            builder.append(encoder.toBinaryString(it.value, header.frequencyLength.toInt()))
+            table
+                    .append(encoder.toBinaryString(it.key, header.symbolLengthInBits.toInt()))
+                    .append(encoder.toBinaryString(it.value, header.frequencyLengthInBits.toInt()))
         }
 
-        header.statsTable = builder.toString()
+        header.statsTable = table.toString()
 
         return this
     }
