@@ -14,7 +14,7 @@ class Decoder(val strategy: DecodingStrategy) {
             val number = strategy.decode(couple)
 
             if (number !in 0..255)
-                throw IllegalArgumentException("Can't find code in ASCII table")
+                throw IllegalArgumentException("Can't find code in ASCII codes")
 
             builder.append(number.toChar())
         }

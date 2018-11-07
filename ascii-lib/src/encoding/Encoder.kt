@@ -8,7 +8,7 @@ class Encoder(val strategy: EncodingStrategy) {
 
         data.forEach {
             if (it < 0 || it > 255)
-                throw IllegalArgumentException("Can't find bytes `$it` in ASCII table")
+                throw IllegalArgumentException("Can't find bytes `$it` in ASCII codes")
 
             builder.append(strategy.encode(it.toInt()))
         }
