@@ -35,14 +35,14 @@ def analyze_control_bits(bits: [int]):
     if len(bits) == 0:
         return stats
 
-    for i in range(1, len(bits) + 1):
-        if is_control_bit(i):
+    for i in range(0, len(bits)):
+        if is_control_bit(i + 1):
             continue
 
-        powers = get_powers(i)
+        powers = get_powers(i + 1)
 
         for key in powers:
-            count = bits[i - 1]
+            count = bits[i]
 
             if key in stats:
                 count += stats[key]

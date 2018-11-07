@@ -19,8 +19,6 @@ fun main(args: Array<String>) = mainBody {
         if (type == EncodingType.HEXADECIMAL)
             strategy = HexadecimalEncodingStrategy()
 
-        File(path).inputStream()
-
         val encodedData = Encoder(strategy).encode(File(path).inputStream().readBytes())
 
         println(encodedData)
