@@ -1,7 +1,9 @@
 package huffman.code.lib.specification
 
 import huffman.code.lib.BinaryStringEncoder
+
 import java.lang.StringBuilder
+import java.nio.ByteBuffer
 
 class HeaderBuilder(private val header: Header) {
 
@@ -47,6 +49,14 @@ class HeaderBuilder(private val header: Header) {
         header.statsTable = table.toString()
         header.symbolCount = statsTable.size.toShort()
 
+        return this
+    }
+
+    fun from(binary: ByteArray): HeaderBuilder {
+        setSymbolLengthInBits(binary[0])
+        setFrequencyLengthInBits(binary[1])
+        setSymbolCount(ByteBuffer.wrap(byteArrayOf(binary[2], binary[3])).short)
+        setEmptyBitCount(binary[4])
         return this
     }
 

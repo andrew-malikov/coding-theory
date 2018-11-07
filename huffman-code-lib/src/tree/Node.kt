@@ -9,7 +9,7 @@ class Node : Comparable<Node> {
     var right: Node? = null
 
     fun isLeaf(): Boolean {
-        return left == null && right == null && symbol == null
+        return left == null && right == null && symbol != null
     }
 
     companion object {

@@ -8,6 +8,6 @@ class Payload(val data: String) {
         get() = data.length % 8
 
     fun toAlignBinaryString(): String {
-        return data.padStart(emptyBits, '0')
+        return data.padStart(data.length + emptyBits, '0')
     }
 }

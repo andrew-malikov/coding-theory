@@ -3,14 +3,14 @@ package huffman.code.lib
 import java.lang.IllegalArgumentException
 
 class BinaryStringEncoder {
-    private fun getNormalizedBinaryString(data: String, size: Int): String {
-        if (data.length < size)
-            return data.padStart(size - data.length, '0')
+    private fun getNormalizedBinaryString(binary: String, size: Int): String {
+        if (binary.length < size)
+            return binary.padStart(size, '0')
 
-        if (data.length > size)
+        if (binary.length > size)
             throw IllegalArgumentException()
 
-        return data
+        return binary
     }
 
     fun toBinaryString(data: Int, size: Int): String {
@@ -23,6 +23,13 @@ class BinaryStringEncoder {
 
     fun toBinaryString(data: Byte, size: Int): String {
         return toBinaryString(data.toInt(), size)
+    }
+
+    fun byteToBinaryString(number: Byte, size: Int): String {
+        if (number < 0)
+            return Integer.toBinaryString(number.toInt()).subSequence(32-8, 32).toString()
+
+        return getNormalizedBinaryString(number.toString(2), size)
     }
 
     fun toBinaryString(data: Char, size: Int): String {

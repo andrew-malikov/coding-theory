@@ -26,14 +26,14 @@ class NodeWalker(private val node: Node) {
         if (walkedNode.left == null)
             throw IllegalStateException("Can't walk to left node")
 
-        walkedNode = node.left!!
+        walkedNode = walkedNode.left!!
     }
 
     private fun walkToRight() {
         if (walkedNode.right == null)
-            throw IllegalStateException("Can't walk to left node")
+            throw IllegalStateException("Can't walk to right node")
 
-        walkedNode = node.right!!
+        walkedNode = walkedNode.right!!
     }
 
     fun reset() {

@@ -1,8 +1,8 @@
-package huffman.code.lib.table
+package huffman.code.lib.codes
 
 import huffman.code.lib.tree.Node
 
-class Codes(private val node: Node) {
+class Codes(node: Node) {
 
     private val _table = mutableMapOf<Char, String>()
 
