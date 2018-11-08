@@ -3,7 +3,7 @@ package arithmetic.coding.lib
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 
-import kotlin.math.max
+import kotlin.math.min
 
 class ChunkIterator(private val data: CharSequence, private val chunkSize: Int) : Iterator<CharSequence> {
     private var index = 0
@@ -21,7 +21,7 @@ class ChunkIterator(private val data: CharSequence, private val chunkSize: Int) 
         if (!hasNext())
             throw IllegalStateException()
 
-        val chunk = data.slice(index until max(index + chunkSize, data.length - 1))
+        val chunk = data.slice(index until min(index + chunkSize, data.length))
 
         index += chunkSize
 
