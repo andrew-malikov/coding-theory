@@ -22,4 +22,11 @@ class TokenRanges(frequencies: Map<Char, Double>) {
             previousRange = range
         }
     }
+
+    fun get(number: Double): Pair<Char, TokenRange>? {
+        for (entry in ranges) if (entry.value.contains(number))
+            return Pair(entry.key, entry.value)
+
+        return null
+    }
 }
