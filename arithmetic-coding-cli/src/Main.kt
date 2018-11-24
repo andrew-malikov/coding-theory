@@ -14,7 +14,7 @@ fun main(args: Array<String>) = mainBody {
         if (message.isEmpty())
             throw IllegalArgumentException()
 
-        val codes = ArithmeticCodes(message, Options(20))
+        val codes = ArithmeticCodes(message, Options(5))
 
         val payload = Payload(codes.content)
         val header = Header(codes.messageMetadata.ranges, codes.codesMetadata)
