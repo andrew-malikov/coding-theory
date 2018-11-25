@@ -1,3 +1,5 @@
+package lzw.lib
+
 class RawMessage(body: List<Int>, registry: TokenRegistry) {
     private var _content = ""
 

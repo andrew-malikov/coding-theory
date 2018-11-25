@@ -1,3 +1,5 @@
+package lzw.lib
+
 class TokenRegistry(size: Int) {
     private val _tokensToCodes = mutableMapOf<String, Int>()
     private val _codesToTokens = mutableMapOf<Int, String>()
