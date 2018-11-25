@@ -1,4 +1,5 @@
-include(":analyzer-lib"
+include(
+        ":analyzer-lib"
         , ":analyzer-lib"
         , ":analyzer-cli"
         , ":ascii-lib"
@@ -9,4 +10,5 @@ include(":analyzer-lib"
         , ":huffman-code-decoder-cli"
         , ":arithmetic-coding-lib"
         , ":arithmetic-coding-cli"
-        , ":lzw-lib")
+        , ":lzw-lib"
+        , ":lzw-cli")
