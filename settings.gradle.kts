@@ -11,4 +11,6 @@ include(
         , ":arithmetic-coding-lib"
         , ":arithmetic-coding-cli"
         , ":lzw-lib"
-        , ":lzw-cli")
+        , ":lzw-cli"
+        , ":cipher-caesar-lib"
+        , ":cipher-caesar-cli")
