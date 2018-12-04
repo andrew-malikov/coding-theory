@@ -34,9 +34,7 @@ tasks.withType<Jar> {
                 Pair("Main-Class", "ascii.encoder.cli.MainKt")
         )
     }
-    from(
-            configurations.compile.map {
-                if (it.isDirectory) it else zipTree(it)
-            }
-    )
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
 }

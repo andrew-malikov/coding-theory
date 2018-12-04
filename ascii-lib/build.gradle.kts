@@ -8,10 +8,10 @@ group = "osu.labs.coding-theory"
 version = "1.0.0"
 
 kotlin.sourceSets {
-    this["main"].kotlin.srcDir("src")
-    this["main"].resources.srcDir("resources")
-    this["test"].kotlin.srcDir("test")
-    this["test"].resources.srcDir("test/resources")
+    getByName("main").kotlin.srcDir("src")
+    getByName("main").resources.srcDir("resources")
+    getByName("test").kotlin.srcDir("test")
+    getByName("test").resources.srcDir("test/resources")
 }
 
 repositories {
