@@ -14,4 +14,5 @@ include(
         , ":lzw-cli"
         , ":cipher-caesar-lib"
         , ":cipher-caesar-cli"
-        , ":cipher-xor-lib")
+        , ":cipher-xor-lib"
+        , ":cipher-transposition-lib")
