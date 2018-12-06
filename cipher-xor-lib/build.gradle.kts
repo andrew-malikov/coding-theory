@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
 }
+
 group = "osu.labs.coding-theory"
 version = "1.0.0"
 

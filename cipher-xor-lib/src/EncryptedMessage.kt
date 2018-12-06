@@ -8,7 +8,7 @@ class EncryptedMessage(body: CharSequence, mask: Mask) {
 
     init {
         body.forEach {
-            _content.append(it.toInt().xor(mask.next()))
+            _content.append(it.toInt().xor(mask.next()).toChar())
         }
     }
 }

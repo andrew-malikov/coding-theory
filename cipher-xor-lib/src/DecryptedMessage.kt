@@ -8,7 +8,7 @@ class DecryptedMessage(encryptedBody: CharSequence, mask: Mask) {
 
     init {
         encryptedBody.forEach {
-            _content.append(it.toInt().xor(mask.next()))
+            _content.append(it.toInt().xor(mask.next()).toChar())
         }
     }
 }
