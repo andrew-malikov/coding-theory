@@ -10,7 +10,7 @@ class EncryptedMessage(body: CharSequence, transpositions: Transpositions) {
 
     init {
         body.forEach {
-            _content.append(getShuffledBits(it, transpositions).toInt().toChar())
+            _content.append(getShuffledBits(it, transpositions).toInt(2).toChar())
         }
     }
 
