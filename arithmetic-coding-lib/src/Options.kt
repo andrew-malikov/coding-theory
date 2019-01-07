@@ -8,6 +8,6 @@ class Options(val codingLength: Int = 5) {
             isValid = false
 
         if (!isValid)
-            throw IllegalStateException()
+            throw IllegalArgumentException()
     }
 }

@@ -1,36 +1,36 @@
 package arithmetic.coding.lib
 
 class ArithmeticCodes(data: String, private val options: Options) {
-    private val _messageMetadata = MessageMetadata(data)
-
-    val messageMetadata
-        get() = _messageMetadata
-
-    private val _codesMetadata = CodesMetadata(data, options)
-
-    val codesMetadata
-        get() = _codesMetadata
-
-    private val codes = mutableListOf<TokenRange>()
+    private var _content: CompressedData
 
     val content
-        get() = codes.toList()
+        get() = _content
 
     init {
+        val codes = mutableListOf<Double>()
+        val ranges = data.ranges
         val iterator = ChunkIterator(data, options.codingLength)
 
         while (iterator.hasNext()) {
             val chunk = iterator.next()
 
-            var range = getRange(chunk[0])
+            var range = ranges.get(chunk[0])
             for (i in 1 until chunk.length)
-                range = getRange(chunk[i]) into range
+                range = ranges.get(chunk[i]) into range
 
-            codes.add(range)
+            codes.add(range.average)
         }
-    }
 
-    private fun getRange(token: Char): TokenRange {
-        return _messageMetadata.ranges.content.getValue(token)
+        _content = CompressedData(
+                codes,
+                TokenOccurrence(data),
+                options.codingLength,
+                CompressionMetadata(data, options).lastCodeLength
+        )
     }
 }
+
+val String.ranges: TokenRanges
+    get() = TokenRanges(TokenFrequencies(this).content)
+
+fun TokenRanges.get(token: Char): TokenRange = this.content.getValue(token)

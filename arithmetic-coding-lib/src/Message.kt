@@ -2,24 +2,26 @@ package arithmetic.coding.lib
 
 import java.lang.StringBuilder
 
-class Message(payload: List<Double>, private val header: Header) {
+class Message(data: CompressedData) {
     private val _content = StringBuilder()
 
     val content
         get() = _content.toString()
 
     init {
-        for (i in 0 until payload.size - 1)
-            decode(payload[i])
+        val ranges = data.tokenRanges
 
-        decode(payload.last(), header.codesMetadata.lastCodeLength)
+        for (i in 0 until data.payload.size - 1)
+            decode(ranges, data.payload[i], data.codingLength)
+
+        decode(ranges, data.payload.last(), data.restCodingLength)
     }
 
-    private fun decode(code: Double, stepCount: Byte = header.codesMetadata.options.codingLength.toByte()) {
+    private fun decode(ranges: TokenRanges, code: Double, stepCount: Int) {
         var number = code
 
         for (i in 0 until stepCount) {
-            val range = header.ranges.get(number)!!
+            val range = ranges.get(number)!!
 
             number = range.second.from(number)
 
@@ -27,3 +29,6 @@ class Message(payload: List<Double>, private val header: Header) {
         }
     }
 }
+
+val CompressedData.tokenRanges: TokenRanges
+    get() = TokenRanges(this.occurrence.frequencies)
