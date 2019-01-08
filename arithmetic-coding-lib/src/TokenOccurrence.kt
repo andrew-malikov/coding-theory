@@ -6,18 +6,6 @@ class TokenOccurrence(data: CharSequence) {
     val content
         get() = occurrence.toMap()
 
-    val frequencies: Map<Char, Double>
-        get() {
-            val messageLength = content.values.sum().toDouble()
-            val frequencies = mutableMapOf<Char, Double>()
-
-            occurrence.forEach {
-                frequencies[it.key] = it.value / messageLength
-            }
-
-            return frequencies.toMap()
-        }
-
     init {
         data.forEach {
             var count = 1

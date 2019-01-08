@@ -20,7 +20,9 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
-    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-ion:2.9.1")
+
+    compile("com.fasterxml.jackson.core:jackson-databind:2.9.8")
+    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.9.8")
 }
 
 tasks.withType<KotlinCompile> {

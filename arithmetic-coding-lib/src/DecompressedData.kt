@@ -1,15 +1,16 @@
 package arithmetic.coding.lib
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.lang.StringBuilder
 
-class Message(data: CompressedData) {
+class DecompressedData(data: CompressedData) {
     private val _content = StringBuilder()
 
     val content
         get() = _content.toString()
 
     init {
-        val ranges = data.tokenRanges
+        val ranges = data.occurrence.tokenRanges
 
         for (i in 0 until data.payload.size - 1)
             decode(ranges, data.payload[i], data.codingLength)
@@ -30,5 +31,15 @@ class Message(data: CompressedData) {
     }
 }
 
-val CompressedData.tokenRanges: TokenRanges
-    get() = TokenRanges(this.occurrence.frequencies)
+val Map<Char, Int>.tokenRanges: TokenRanges
+    @JsonIgnore
+    get() {
+        val messageLength = this.values.sum().toDouble()
+        val frequencies = mutableMapOf<Char, Double>()
+
+        this.forEach {
+            frequencies[it.key] = it.value / messageLength
+        }
+
+        return TokenRanges(frequencies.toMap())
+    }

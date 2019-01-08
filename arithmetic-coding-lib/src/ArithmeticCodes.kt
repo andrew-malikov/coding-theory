@@ -23,7 +23,7 @@ class ArithmeticCodes(data: String, private val options: Options) {
 
         _content = CompressedData(
                 codes,
-                TokenOccurrence(data),
+                TokenOccurrence(data).content,
                 options.codingLength,
                 CompressionMetadata(data, options).lastCodeLength
         )
