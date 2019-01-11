@@ -13,7 +13,7 @@ class TokenRegistry(size: Int) {
 
     fun addToken(token: String) {
         if (token in _tokensToCodes)
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("token '$token' exist in registry")
 
         val code = _tokensToCodes.size
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
-message=`cat ./src/small.txt`
+app="../arithmetic-coding/compressing-cli/build/libs/compressing-cli-1.0.0.jar"
+args="-l 12"
 
-java -jar "../arithmetic-coding/compressing-cli/build/libs/cli-1.0.0.jar" -l 2 <<< "$message"
+data=`cat ./src/large.txt`
+
+java -jar $app $args <<< "$data" > ./out/arithmetic-compression.txt

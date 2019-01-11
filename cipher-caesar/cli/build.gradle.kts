@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm")
 }
 
-group = "osu.labs.coding-theory"
+
 version = "1.0.0"
 
 kotlin.sourceSets {

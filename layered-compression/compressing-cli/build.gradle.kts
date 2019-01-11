@@ -4,14 +4,13 @@ plugins {
     kotlin("jvm")
 }
 
-
 version = "1.0.0"
 
 kotlin.sourceSets {
-    this["main"].kotlin.srcDir("src")
-    this["main"].resources.srcDir("resources")
-    this["test"].kotlin.srcDir("test")
-    this["test"].resources.srcDir("test/resources")
+    getByName("main").kotlin.srcDir("src")
+    getByName("main").resources.srcDir("resources")
+    getByName("test").kotlin.srcDir("test")
+    getByName("test").resources.srcDir("test/resources")
 }
 
 repositories {
@@ -20,8 +19,11 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
+
     compile("com.xenomachina:kotlin-argparser:2.0.7")
-    compile(project(":ascii:lib"))
+
+    compile(project(":arithmetic-coding:lib"))
+    compile(project(":lzw:lib"))
 }
 
 tasks.withType<KotlinCompile> {
@@ -31,7 +33,7 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Jar> {
     manifest {
         attributes(
-                Pair("Main-Class", "ascii.encoder.cli.MainKt")
+                Pair("Main-Class", "layered.compression.compressing.cli.MainKt")
         )
     }
     configurations["compileClasspath"].forEach { file: File ->
